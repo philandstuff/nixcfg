@@ -19,7 +19,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    chromium curl dwm emacs evilvte firefox git gnupg openjdk owncloudclient polkit_gnome wget xscreensaver ykpers
+    chromium curl dwm elixir emacs evilvte firefox gimp git gnupg openjdk owncloudclient polkit_gnome rebar wget xscreensaver ykpers
   ];
 
   nixpkgs.config.evilvte.config = ''
