@@ -73,6 +73,11 @@
     HandleLidSwitch=ignore
   '';
 
+  services.printing = {
+    enable = true;
+    drivers = [ pkgs.gutenprint ];
+  };
+
   services.syslogd.enable = true;
 
   # allow yubikey access to wheel group
@@ -89,7 +94,7 @@
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.lightdm.enable = true;
 #  services.xserver.windowManager.default = "xmonad";
-  services.xserver.windowManager.xmonad.enable = true;
+#  services.xserver.windowManager.xmonad.enable = true;
 
   services.xserver.synaptics.enable = true;
 
