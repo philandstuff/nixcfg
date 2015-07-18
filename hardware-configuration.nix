@@ -6,9 +6,10 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_hcd" "ehci_pci" "ahci" "usb_storage" ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-intel" "thinkpad_acpi" ];
   boot.extraModprobeConfig = ''
     options psmouse proto=imps
+    options thinkpad_acpi force_load=1
   '';
 
   boot.extraModulePackages = [ ];
