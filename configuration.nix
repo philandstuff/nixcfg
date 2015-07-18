@@ -6,12 +6,12 @@
       ./hardware-configuration.nix
     ];
 
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  boot.loader.grub.device = "/dev/sda";
+  # Use the gummiboot efi boot loader.
+  boot.loader.gummiboot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "vostro";
-  networking.hostId = "8b27dc02";
+  # networking.hostName = "nixos"; # Define your hostname.
+  networking.hostId = "db0cce68";
 
   i18n = {
     consoleKeyMap = "uk";
@@ -19,7 +19,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    chromium curl dwm elixir emacs evilvte firefox gimp git gnupg openjdk owncloudclient polkit_gnome rebar wget xscreensaver ykpers
+    chromium curl emacs evilvte firefox git gnupg openjdk owncloudclient wget ykpers
   ];
 
   nixpkgs.config.evilvte.config = ''
@@ -66,12 +66,6 @@
 
   programs.ssh.startAgent = true;
   programs.ssh.agentTimeout = "1h";
-
-  security.pam.enableU2F = true;
-
-  services.logind.extraConfig = ''
-    HandleLidSwitch=ignore
-  '';
 
   services.printing = {
     enable = true;
