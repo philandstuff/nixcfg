@@ -19,7 +19,9 @@
   };
 
   environment.systemPackages = with pkgs; [
-    chromium curl emacs evilvte firefox git gnupg openjdk owncloudclient wget ykpers
+    chromium curl emacs evilvte firefox git gnupg
+    libgphoto2
+    openjdk8 owncloudclient wget ykpers
   ];
 
   nixpkgs.config.evilvte.config = ''
