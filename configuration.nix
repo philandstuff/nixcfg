@@ -66,9 +66,6 @@
     #define HOTKEY_TAB_NEXT CTRL_ALT(GDK_Page_Down)
   '';
 
-  programs.ssh.startAgent = true;
-  programs.ssh.agentTimeout = "1h";
-
   services.printing = {
     enable = true;
     drivers = [ pkgs.gutenprint ];
@@ -76,10 +73,16 @@
 
   services.syslogd.enable = true;
 
+  services.pcscd.enable = true; # needed for yubikey OpenPGP
+
   # allow yubikey access to wheel group
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="wheel", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0113|0114|0115|0116|0120"
   '';
+
+  # use gpg-agent
+  programs.ssh.startAgent = false;
+  services.xserver.startGnuPGAgent = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
