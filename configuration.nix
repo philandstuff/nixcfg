@@ -23,7 +23,7 @@
 
   environment.systemPackages = with pkgs; [
     chromium curl darktable emacs evilvte firefoxWrapper git gnupg
-    htop libgphoto2 lightdm mongodb
+    htop libgphoto2 mongodb
     openjdk8 owncloudclient pass skype wget ykpers
   ];
 
@@ -95,7 +95,7 @@
 #  services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.desktopManagerHandlesLidAndPower = false;
-  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.windowManager.default = "xmonad";
 #  services.xserver.windowManager.xmonad.enable = true;
 
