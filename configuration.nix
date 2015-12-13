@@ -18,10 +18,13 @@
     defaultLocale = "en_GB.UTF-8";
   };
 
+  nixpkgs.config.allowUnfreePredicate = with pkgs.lib; pkg:
+    any (s: hasPrefix s pkg.name) ["skype-" "firefox-"];
+
   environment.systemPackages = with pkgs; [
-    chromium curl emacs evilvte firefox git gnupg
-    libgphoto2
-    openjdk8 owncloudclient wget ykpers
+    chromium curl darktable emacs evilvte firefoxWrapper git gnupg
+    htop libgphoto2 lightdm mongodb
+    openjdk8 owncloudclient pass skype wget ykpers
   ];
 
   nixpkgs.config.evilvte.config = ''
