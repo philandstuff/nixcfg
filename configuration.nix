@@ -21,6 +21,15 @@
   nixpkgs.config.allowUnfreePredicate = with pkgs.lib; pkg:
     any (s: hasPrefix s pkg.name) ["skype-" "firefox-"];
 
+  environment.etc.gitconfig = { text = ''
+    [transfer]
+        fsckObjects = true
+    [fetch]
+        fsckObjects = true
+    [receive]
+        fsckObjects = true
+  ''; };
+
   environment.systemPackages = with pkgs; [
     chromium curl darktable emacs evilvte firefoxWrapper git gnupg
     htop libgphoto2 mongodb
