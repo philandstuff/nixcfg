@@ -84,6 +84,11 @@
   };
 
   services.syslogd.enable = true;
+  services.redshift = {
+    enable = true;
+    latitude = "51.0";
+    longitude = "0.0";
+  };
 
   services.pcscd.enable = true; # needed for yubikey OpenPGP
 
