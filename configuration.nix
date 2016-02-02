@@ -91,6 +91,7 @@
   };
 
   services.pcscd.enable = true; # needed for yubikey OpenPGP
+  services.tlp.enable = true;
 
   # allow yubikey access to wheel group
   services.udev.extraRules = ''
