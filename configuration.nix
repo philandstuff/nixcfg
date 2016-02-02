@@ -78,19 +78,20 @@
     #define HOTKEY_TAB_NEXT CTRL_ALT(GDK_Page_Down)
   '';
 
+  services.pcscd.enable = true; # needed for yubikey OpenPGP
+
   services.printing = {
     enable = true;
     drivers = [ pkgs.gutenprint ];
   };
 
-  services.syslogd.enable = true;
   services.redshift = {
     enable = true;
     latitude = "51.0";
     longitude = "0.0";
   };
 
-  services.pcscd.enable = true; # needed for yubikey OpenPGP
+  services.syslogd.enable = true;
   services.tlp.enable = true;
 
   # allow yubikey access to wheel group
