@@ -28,6 +28,13 @@
         fsckObjects = true
     [receive]
         fsckObjects = true
+
+    # rewrite github https: urls to ssh for pushing
+    [url "git@github.com:"]
+        pushInsteadOf = "https://github.com/"
+
+    [push]
+        default = simple
   ''; };
 
   environment.systemPackages = with pkgs; [
