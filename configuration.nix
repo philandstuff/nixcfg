@@ -43,6 +43,8 @@
     openjdk8 owncloudclient pass skype wget ykpers
   ];
 
+  programs.bash.enableCompletion = true;
+
   nixpkgs.config.evilvte.config = ''
     #define BACKGROUND_SATURATION 0.15
     #define BACKGROUND_OPACITY TRUE
