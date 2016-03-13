@@ -38,7 +38,7 @@
   ''; };
 
   environment.systemPackages = with pkgs; [
-    chromium curl darktable emacs evilvte firefoxWrapper git gnupg
+    chromium curl darktable emacs evilvte firefox git gnupg
     htop libgphoto2 mongodb
     openjdk8 owncloudclient pass skype wget ykpers
   ];
