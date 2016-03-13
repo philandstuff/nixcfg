@@ -121,7 +121,6 @@
 
 #  services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.gnome3.enable = true;
-  services.xserver.displayManager.desktopManagerHandlesLidAndPower = false;
   services.xserver.displayManager.gdm.enable = true;
 #  services.xserver.windowManager.default = "xmonad";
 #  services.xserver.windowManager.xmonad.enable = true;
