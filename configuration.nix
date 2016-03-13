@@ -45,6 +45,8 @@
 
   programs.bash.enableCompletion = true;
 
+  hardware.opengl.driSupport32Bit = true;
+
   nixpkgs.config.evilvte.config = ''
     #define BACKGROUND_SATURATION 0.15
     #define BACKGROUND_OPACITY TRUE
