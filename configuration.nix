@@ -33,6 +33,9 @@
     [url "git@github.com:"]
         pushInsteadOf = "https://github.com/"
 
+    [pull]
+        ff = only
+    
     [push]
         default = simple
   ''; };
