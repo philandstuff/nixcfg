@@ -51,6 +51,7 @@
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
+  networking.networkmanager.enable = true;
 
   nixpkgs.config.evilvte.config = ''
     #define BACKGROUND_SATURATION 0.15
