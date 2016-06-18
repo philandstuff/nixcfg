@@ -128,6 +128,13 @@
 #  services.xserver.desktopManager.default = "none";
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.sessionCommands = ''
+    # Set up trackpoint scrolling with middle button
+    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation" 1
+    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Button" 2
+    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Timeout" 200
+    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Axes" 6 7 4 5
+  '';
 #  services.xserver.windowManager.default = "xmonad";
 #  services.xserver.windowManager.xmonad.enable = true;
 
