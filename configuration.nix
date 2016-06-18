@@ -116,9 +116,8 @@
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="wheel", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0113|0114|0115|0116|0120"
   '';
 
-  # use gpg-agent
+  # I use gpg-agent instead of ssh-agent
   programs.ssh.startAgent = false;
-  services.xserver.startGnuPGAgent = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -129,6 +128,13 @@
   services.xserver.desktopManager.gnome3.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sessionCommands = ''
+    gpg-connect-agent /bye
+    GPG_TTY=$(tty)
+    export GPG_TTY
+
+    unset SSH_AGENT_PID
+    export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
+
     # Set up trackpoint scrolling with middle button
     xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation" 1
     xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Button" 2
