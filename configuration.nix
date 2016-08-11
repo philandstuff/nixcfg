@@ -114,6 +114,7 @@
   # allow yubikey access to wheel group
   services.udev.extraRules = ''
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0664", GROUP="wheel", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0113|0114|0115|0116|0120"
+    ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="660", GROUP="emfbadge"
   '';
 
   # I use gpg-agent instead of ssh-agent
@@ -150,8 +151,10 @@
 
   time.timeZone = "Europe/London";
 
+  users.extraGroups.emfbadge = {};
+
   users.extraUsers.philandstuff = {
     isNormalUser = true;
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "dialout" "emfbadge" "networkmanager" "wheel" ];
   };
 }
