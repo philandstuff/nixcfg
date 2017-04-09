@@ -53,6 +53,10 @@
 
   networking.networkmanager.enable = true;
 
+  # automatically optimise new files as they are added to the store
+  # saves lots of disk space!
+  nix.extraOptions = "auto-optimise-store = true";
+
   nixpkgs.config.evilvte.config = ''
     #define BACKGROUND_SATURATION 0.15
     #define BACKGROUND_OPACITY TRUE
