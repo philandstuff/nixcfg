@@ -19,7 +19,7 @@
   };
 
   nixpkgs.config.allowUnfreePredicate = with pkgs.lib; pkg:
-    any (s: hasPrefix s pkg.name) ["skype-" "firefox-"];
+    any (s: hasPrefix s pkg.name) ["skype" "firefox-"];
 
   environment.etc.gitconfig = { text = ''
     [transfer]
