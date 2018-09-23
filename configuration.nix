@@ -42,8 +42,8 @@
 
   environment.systemPackages = with pkgs; [
     chromium curl darktable emacs evilvte firefox git gnupg
-    htop libgphoto2
     openjdk8 owncloudclient pass skype wget yubikey-personalization
+    go htop libgphoto2
   ];
 
   programs.bash.enableCompletion = true;
