@@ -41,10 +41,14 @@
   ''; };
 
   environment.systemPackages = with pkgs; [
-    chromium curl darktable emacs firefox git gnupg
-    go htop libgphoto2
-    openjdk8 owncloudclient pass sakura skype wget yubikey-personalization
+    chromium curl emacs firefox git gnupg
+    go htop
+    openjdk8 pass sakura wget yubikey-personalization
   ];
+
+  environment.variables = {
+    GOROOT = [ "${pkgs.go.out}/share/go" ];
+  };
 
   programs.bash.enableCompletion = true;
 
@@ -84,32 +88,37 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.layout = "uk";
-  services.xserver.xkbOptions = "ctrl:nocaps,eurosign:e";
+  fonts.fontconfig.dpi = 192;
 
 #  services.xserver.desktopManager.default = "none";
-  services.xserver.desktopManager.gnome3.enable = true;
+  services.xserver.desktopManager.gnome3 = {
+    enable = true;
+    extraGSettingsOverrides = ''
+      [org.gnome.desktop.peripherals.touchpad]
+      tap-to-click=false
+      [org.gnome.desktop.input-sources]
+      xkb-options=['caps:ctrl_modifier']
+      sources=[('xkb', 'uk')]
+    '';
+  };
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.displayManager.sessionCommands = ''
     gpg-connect-agent /bye
     GPG_TTY=$(tty)
     export GPG_TTY
 
-    unset SSH_AGENT_PID
-    export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
-
-    # Set up trackpoint scrolling with middle button
-    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation" 1
-    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Button" 2
-    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Timeout" 200
-    xinput set-prop "PS/2 Synaptics TouchPad" "Evdev Wheel Emulation Axes" 6 7 4 5
+    # default sensitivity for trackpoint is too low. this fixes it.
+    xinput set-prop 'PS/2 Synaptics TouchPad' 'libinput Accel Speed' 0.7
   '';
-#  services.xserver.windowManager.default = "xmonad";
-#  services.xserver.windowManager.xmonad.enable = true;
 
-  services.xserver.synaptics.enable = true;
-
-  services.xserver.synaptics = {
+  services.xserver.synaptics.enable = false;
+  services.xserver.libinput = {
+    enable = true;
+    naturalScrolling = true;
+    scrollMethod = "twofinger";
+    tapping = false;
+    # scrollButton = 3;
+  };
 
   time.timeZone = "Europe/London";
 
@@ -117,6 +126,9 @@
 
   users.extraUsers.philandstuff = {
     isNormalUser = true;
-    extraGroups = [ "dialout" "emfbadge" "networkmanager" "wheel" ];
+    extraGroups = [ "dialout" "docker" "emfbadge" "libvirtd" "networkmanager" "wheel" ];
   };
+
+  virtualisation.docker.enable = true;
+  virtualisation.libvirtd.enable = true;
 }
