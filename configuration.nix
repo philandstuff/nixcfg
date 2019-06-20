@@ -53,6 +53,7 @@
 
   programs.bash.enableCompletion = true;
 
+  hardware.cpu.intel.updateMicrocode = true;
   hardware.opengl.driSupport32Bit = true;
   hardware.pulseaudio.support32Bit = true;
 
