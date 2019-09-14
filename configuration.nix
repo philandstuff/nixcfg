@@ -43,8 +43,8 @@
 
   environment.systemPackages = with pkgs; [
     chromium curl emacs firefox git gnupg
-    go htop
-    openjdk8 pass sakura wget yubikey-personalization
+    go htop openjdk8 opensc pass wget
+    yubikey-personalization
   ];
 
   environment.variables = {
@@ -63,6 +63,8 @@
   # saves lots of disk space!
   nix.extraOptions = "auto-optimise-store = true";
 
+
+  # TODO: remove
   services.pcscd.enable = true; # needed for yubikey OpenPGP
 
   services.printing = {
@@ -85,8 +87,10 @@
     ACTION=="add", SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="660", GROUP="emfbadge"
   '';
 
-  # I use gpg-agent instead of ssh-agent
-  programs.ssh.startAgent = false;
+  programs.ssh.startAgent = true;
+  # this is a horrible hack.  I want to set the -P option, I do so via
+  # injection into another variable
+  programs.ssh.agentTimeout = "1h -P ${pkgs.opensc}/lib/opensc-pkcs11.so";
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
