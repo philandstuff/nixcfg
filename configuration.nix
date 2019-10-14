@@ -126,6 +126,8 @@
     # scrollButton = 3;
   };
 
+  system.stateVersion = "19.03";
+
   time.timeZone = "Europe/London";
 
   users.extraGroups.emfbadge = {};
