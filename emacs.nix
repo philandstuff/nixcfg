@@ -4,6 +4,11 @@
   programs.emacs = {
     enable = true;
 
+    extraConfig = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin ''
+      ; macOS ls doesn't support --dired
+      (setq dired-use-ls-dired nil)
+    '';
+
     extraPackages = epkgs: with epkgs; [
       org
 
