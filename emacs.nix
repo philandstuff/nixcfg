@@ -21,15 +21,16 @@
 
       flycheck
       
+      company
+      go-mode
+      haskell-mode
       lsp-mode
       lsp-ui
-      company
-      haskell-mode
-      pretty-mode
-      nix-mode
-      nix-sandbox
       magit
       markdown-mode
+      nix-mode
+      nix-sandbox
+      pretty-mode
       projectile
       terraform-mode
     ];
