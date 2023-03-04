@@ -21,6 +21,7 @@
 
   imports = [
     ./emacs.nix
+    ./gcloud.nix
     ./yubikey-agent.nix
   ];
 
