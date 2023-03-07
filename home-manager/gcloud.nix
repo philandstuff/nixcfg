@@ -10,6 +10,8 @@
       packages          = [ gcloud ];
       sessionVariables  = {
         CLOUDSDK_CONFIG = "${config.xdg.configHome}/gcloud";
+        # https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke
+        USE_GKE_GCLOUD_AUTH_PLUGIN = "True";
     };
   };
 }
