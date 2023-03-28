@@ -41,6 +41,16 @@
         st = "status -bs";
       };
 
+      includes = [
+        {
+          condition = "gitdir:~/replicate/";
+          contents = {
+            user = {
+              email = "phil@replicate.com";
+            };
+          };
+        }
+      ];
       extraConfig = {
         url = {
           "git@github.com:" = {
