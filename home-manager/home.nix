@@ -21,8 +21,8 @@
 
   imports = [
     ./emacs.nix
-    ./gcloud.nix
     ./yubikey-agent.nix
+    ./replicate.nix
   ];
 
   launchd.enable = true;
