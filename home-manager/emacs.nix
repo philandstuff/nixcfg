@@ -1,6 +1,10 @@
 { config, pkgs, ...}:
 
 {
+  home.packages = [
+    pkgs.python3Packages.black
+  ];
+
   programs.emacs = {
     enable = true;
 
@@ -20,7 +24,10 @@
       # epkgs.exec-path-from-shell
 
       flycheck
+
+      envrc
       
+      blacken
       company
       go-mode
       haskell-mode
@@ -33,6 +40,7 @@
       pretty-mode
       projectile
       terraform-mode
+      yaml-mode
     ];
   };
 

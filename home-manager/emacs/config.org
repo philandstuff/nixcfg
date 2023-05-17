@@ -1,0 +1,248 @@
+#  -*- coding: utf-8 -*-
+
+* Global settings
+** better-defaults
+  [[https://github.com/technomancy/better-defaults][better-defaults]] does a bunch of generic emacs interface tidying,
+  including:
+  - better buffer unique names
+  - turn off scrollbar, menu bar, toolbar
+
+#+begin_src emacs-lisp
+  (require 'better-defaults)
+#+end_src
+
+** ido
+
+  ido-completing-read enables ido in many places.  (better-defaults already
+  enables ido for some things, this just goes further).  smex adds
+  ido-like behaviour to =M-x=.
+#+begin_src emacs-lisp
+  (ido-mode 1)
+  (ido-everywhere 1)
+  (ido-ubiquitous-mode 1)
+
+  (require 'smex)
+  (setq smex-save-file (concat user-emacs-directory ".smex-items"))
+  (smex-initialize)
+  (global-set-key (kbd "M-x") 'smex)
+#+end_src
+
+** magit
+
+   [[https://github.com/magit/magit][magit]] is the only way to interact with git.  Seriously, even when
+   I'm using other editors, I'll keep emacs open in order to use magit.
+   The main reasons I like it:
+   - easy manipulation of individual lines within a changeset
+   - one-character commands for all common operations (push, pull,
+     commit, rebase, merge..)
+   As a result, I bind a global key combination to =magit-status= so
+   it's always easy to get to.
+
+#+begin_src emacs-lisp
+  (global-set-key "\C-cg" 'magit-status)
+#+end_src
+
+** y-or-n-p
+
+   This replaces dialogs which require a full "yes" or "no" to just
+   require a simple "y" or "n".
+
+#+begin_src emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+** indicate empty lines
+
+    This adds a graphic in the margin to show how many empty lines you
+    have beyond the end of your file's content.
+
+#+begin_src emacs-lisp
+  (set-default 'indicate-empty-lines t)
+#+end_src
+
+** remap windows key ("super") to meta
+
+   On non-OS/X operating systems, I want the windows key on the
+   keyboard to be another meta key.
+
+#+begin_src emacs-lisp
+  (when (string-equal system-type "gnu/linux")
+    (setq x-super-keysym 'meta))
+#+end_src
+
+** disable C-z
+
+I hit this by mistake all the time and it's never what I want.
+
+#+BEGIN_SRC emacs-lisp
+  (global-unset-key (kbd "C-z"))
+#+END_SRC
+
+** enable commands
+
+   Emacs has a few commands which are disabled by default, because
+   they can be confusing.  Enable them here:
+
+#+begin_src emacs-lisp
+  (put 'narrow-to-region 'disabled nil)
+  (put 'upcase-region 'disabled nil)
+#+end_src
+
+** visible bell
+
+#+BEGIN_SRC emacs-lisp
+  (setq visible-bell nil)
+  (setq ring-bell-function
+        (lambda ()
+          (invert-face 'mode-line)
+          (run-with-timer 0.1 nil 'invert-face 'mode-line)))
+#+END_SRC
+
+** flycheck
+
+#+begin_src emacs-lisp
+  (require 'flycheck)
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (diminish 'flycheck-mode)
+#+end_src
+
+* company-mode
+
+Company mode is a standard completion package that works well with lsp-mode.
+
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'after-init-hook #'global-company-mode)
+#+END_SRC
+
+
+* Python
+
+** blacken
+
+#+BEGIN_SRC emacs-lisp
+  (require 'blacken)
+  (require 'python)
+  (add-hook 'python-mode-hook #'blacken-mode)
+#+END_SRC
+
+
+* Haskell
+
+#+begin_src emacs-lisp
+  (eval-after-load 'haskell-mode
+    '(progn
+       (add-hook 'haskell-mode-hook #'haskell-indentation-mode)
+       (add-hook 'haskell-mode-hook #'interactive-haskell-mode)))
+  (setq haskell-process-wrapper-function
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+
+#+end_src
+
+* Pretty-mode
+
+This adds pretty arrows, lambdas, etc to Haskell and friends
+
+#+BEGIN_SRC emacs-lisp
+  (global-pretty-mode 1)
+#+END_SRC
+
+
+* Javascript
+** eslint
+
+I cribbed a lot of this from [[http://codewinds.com/blog/2015-04-02-emacs-flycheck-eslint-jsx.html][a nice blog post]].
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default flycheck-disabled-checkers
+    (append flycheck-disabled-checkers
+            '(javascript-jshint)))
+
+  ;; use local eslint from node_modules before global
+  ;; http://emacs.stackexchange.com/questions/21205/flycheck-with-file-relative-eslint-executable
+  (defun my/use-eslint-from-node-modules ()
+    (let* ((root (locate-dominating-file
+                  (or (buffer-file-name) default-directory)
+                  "node_modules"))
+           (eslint (and root
+                        (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                          root))))
+      (when (and eslint (file-executable-p eslint))
+        (setq-local flycheck-javascript-eslint-executable eslint))))
+
+  (defun my/allow-eslint-in-web-mode ()
+    (flycheck-add-mode 'javascript-eslint 'web-mode))
+
+
+  (defun my/flycheck-mode-hook ()
+    (progn
+      (my/use-eslint-from-node-modules)
+      (my/allow-eslint-in-web-mode)))
+
+  (add-hook 'flycheck-mode-hook #'my/flycheck-mode-hook)
+#+END_SRC
+
+* golang
+
+#+BEGIN_SRC emacs-lisp
+  ;; Set up before-save hooks to format buffer and add/delete imports.
+  ;; Make sure you don't have other gofmt/goimports hooks enabled.
+  (defun lsp-go-install-save-hooks ()
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-deferred)
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+#+END_SRC
+
+
+* Markdown
+
+#+begin_src emacs-lisp
+  (add-hook 'markdown-mode-hook (lambda ()
+                                  (variable-pitch-mode 1)
+                                  (visual-line-mode 1)))
+#+end_src
+* projectile
+
+[[https://github.com/bbatsov/projectile][Projectile]] is a minor mode which allows you to quickly navigate to
+files within the same project.
+
+#+begin_src emacs-lisp
+  (projectile-mode +1)
+  (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (diminish 'projectile-mode)
+#+end_src
+
+* terraform
+
+#+begin_src emacs-lisp
+  (eval-after-load 'terraform-mode
+    '(add-hook 'terraform-mode-hook #'terraform-format-on-save-mode))
+#+end_src
+
+* local settings
+  This repo has a /local directory, with all of its contents in
+  =.gitignore=, containing various local settings.
+
+** customized variables
+   custom.el provides a mechanism for customizing emacs variables from
+   within emacs.  To make such changes permanent, it will put changes
+   into =custom-file= which by default is =init.el=.  To avoid
+   polluting that file, we set it to something else:
+
+   #+BEGIN_SRC emacs-lisp
+     (setq custom-file (concat user-emacs-directory "custom.el"))
+     (load custom-file 'noerror)
+   #+END_SRC
+
+* envrc
+
+This integrates with existing `direnv` integrations, so that things
+work correctly with local dev environments.
+
+We add this last (see the [[https://github.com/purcell/envrc][project readme]] for why).
+
+#+BEGIN_SRC emacs-lisp
+  (envrc-global-mode 1)
+#+END_SRC
+
