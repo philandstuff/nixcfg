@@ -27,6 +27,13 @@
 
   launchd.enable = true;
 
+  home.packages = [
+    pkgs.csvkit
+    pkgs.jq
+    pkgs.shellcheck
+    pkgs.watch
+  ];
+
   programs = {
     direnv.enable = true;
     fzf.enable = true;
@@ -60,11 +67,17 @@
         init = {
           defaultBranch = "main";
         };
+        remote = {
+          pushDefault = "origin";
+        };
       };
     };
 
     zsh = {
       enable = true;
+      initExtra = ''
+        export PATH=$PATH:$HOME/go/bin
+      '';
     };
   };
 }
