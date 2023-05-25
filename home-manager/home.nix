@@ -27,6 +27,8 @@
 
   launchd.enable = true;
 
+  home.sessionVariables.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
+
   home.packages = [
     pkgs.csvkit
     pkgs.jq
