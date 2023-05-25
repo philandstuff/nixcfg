@@ -34,6 +34,7 @@
     pkgs.jq
     pkgs.shellcheck
     pkgs.watch
+    pkgs.asdf-vm
   ];
 
   programs = {
@@ -79,6 +80,7 @@
       enable = true;
       initExtra = ''
         export PATH=$PATH:$HOME/go/bin
+        . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
       '';
     };
   };
