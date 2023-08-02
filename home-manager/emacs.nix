@@ -29,9 +29,12 @@
       
       blacken
       company
+      emacsql
       go-mode
       haskell-mode
+      kubel
       lsp-mode
+      lsp-pyright
       lsp-ui
       magit
       markdown-mode
@@ -39,6 +42,7 @@
       nix-sandbox
       pretty-mode
       projectile
+      rust-mode
       terraform-mode
       yaml-mode
     ];

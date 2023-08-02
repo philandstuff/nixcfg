@@ -35,6 +35,8 @@
     pkgs.shellcheck
     pkgs.watch
     pkgs.asdf-vm
+    pkgs.pwgen
+    pkgs.k9s
   ];
 
   programs = {
