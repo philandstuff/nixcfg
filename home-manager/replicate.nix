@@ -11,6 +11,7 @@
     pkgs._1password
     pkgs.dive
     pkgs.eksctl
+    pkgs.flyctl
     pkgs.gcrane
     pkgs.heroku
     pkgs.kind
