@@ -23,6 +23,7 @@
     ./emacs.nix
     ./yubikey-agent.nix
     ./replicate.nix
+    ./llm.nix
   ];
 
   launchd.enable = true;
