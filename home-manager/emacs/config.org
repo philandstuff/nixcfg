@@ -51,13 +51,19 @@
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
 
-** indicate empty lines
+** visual things
 
     This adds a graphic in the margin to show how many empty lines you
     have beyond the end of your file's content.
 
 #+begin_src emacs-lisp
   (set-default 'indicate-empty-lines t)
+#+end_src
+
+   This adds line numbers everywhere, which is particularly useful for pairing.
+
+#+begin_src emacs-lisp
+  (global-display-line-numbers-mode 1)
 #+end_src
 
 ** remap windows key ("super") to meta

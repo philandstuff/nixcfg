@@ -37,6 +37,7 @@
     pkgs.asdf-vm
     pkgs.pwgen
     pkgs.k9s
+    pkgs.magic-wormhole
   ];
 
   programs = {
@@ -46,6 +47,7 @@
 
     git = {
       enable = true;
+      lfs.enable = true;
       userName = "Philip Potter";
       userEmail = "philip.g.potter@gmail.com";
 
