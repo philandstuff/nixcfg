@@ -11,6 +11,12 @@
   (require 'better-defaults)
 #+end_src
 
+** fill
+
+#+begin_src emacs-lisp
+  (setq-default fill-column 80)
+#+end_src
+
 ** ido
 
   ido-completing-read enables ido in many places.  (better-defaults already
