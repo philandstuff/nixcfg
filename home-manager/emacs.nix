@@ -7,6 +7,7 @@
 
   programs.emacs = {
     enable = true;
+    package = pkgs.emacs29;
 
     extraConfig = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin ''
       ; macOS ls doesn't support --dired
@@ -29,6 +30,7 @@
       
       blacken
       company
+      dockerfile-mode
       emacsql
       go-mode
       haskell-mode
