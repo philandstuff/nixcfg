@@ -235,6 +235,12 @@ files within the same project.
   (diminish 'projectile-mode)
 #+end_src
 
+When switching projects, jump straight to the magit status:
+
+#+begin_src emacs-lisp
+  (setq projectile-switch-project-action 'projectile-vc)
+#+end_src
+
 * terraform
 
 #+begin_src emacs-lisp
