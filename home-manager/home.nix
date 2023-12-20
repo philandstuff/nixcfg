@@ -33,6 +33,7 @@
     pkgs.csvkit
     pkgs.jq
     pkgs.shellcheck
+    pkgs.sqlite-interactive
     pkgs.watch
     pkgs.asdf-vm
     pkgs.pwgen
