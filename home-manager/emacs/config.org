@@ -72,6 +72,12 @@
   (global-display-line-numbers-mode 1)
 #+end_src
 
+Tabs should be 4 chars, not 8:
+
+#+begin_src emacs-lisp
+  (setq-default tab-width 4)
+#+end_src
+
 ** remap windows key ("super") to meta
 
    On non-OS/X operating systems, I want the windows key on the
