@@ -37,7 +37,6 @@
     pkgs.watch
     pkgs.asdf-vm
     pkgs.pwgen
-    pkgs.k9s
     pkgs.magic-wormhole
   ];
 
@@ -67,11 +66,6 @@
         }
       ];
       extraConfig = {
-        url = {
-          "git@github.com:" = {
-            pushInsteadOf = "https://github.com/";
-          };
-        };
         init = {
           defaultBranch = "main";
         };
@@ -89,6 +83,9 @@
         if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
           . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
         fi
+
+        # increase open file limit from the measly default of 256
+        ulimit -n 100000
       '';
     };
   };
