@@ -30,7 +30,7 @@
   home.sessionVariables.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
   home.packages = [
-    pkgs.csvkit
+    #pkgs.csvkit
     pkgs.jq
     pkgs.shellcheck
     pkgs.sqlite-interactive
@@ -85,7 +85,7 @@
         fi
 
         # increase open file limit from the measly default of 256
-        ulimit -n 100000
+        ulimit -n 1000000
       '';
     };
   };

@@ -9,6 +9,8 @@
 
   home.packages = [
     pkgs._1password
+    pkgs.awscli2
+    pkgs.amazon-ecr-credential-helper
     pkgs.cmctl
     pkgs.dive
     pkgs.eksctl
@@ -20,6 +22,8 @@
     pkgs.kind
     pkgs.kubernetes-helm
     pkgs.kustomize
+    pkgs.oci-cli # ugh
+    pkgs.postgresql
     pkgs.rclone
     pkgs.redis # for cli
     pkgs.s3cmd
