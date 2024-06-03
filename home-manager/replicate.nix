@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, cbcli, ... }:
 
 {
   imports = [
@@ -30,5 +30,7 @@
     pkgs.sops
     pkgs.stern
     pkgs.tailscale
+
+    cbcli.default
   ];
 }
