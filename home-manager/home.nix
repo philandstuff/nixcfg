@@ -30,7 +30,8 @@
   home.sessionVariables.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
   home.packages = [
-    #pkgs.csvkit
+    # pkgs.csvkit
+    pkgs.git-filter-repo
     pkgs.jq
     pkgs.shellcheck
     pkgs.sqlite-interactive
