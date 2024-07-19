@@ -17,6 +17,7 @@
     pkgs.flyctl
     pkgs.gcrane
     pkgs.gh
+    pkgs.graphviz
     pkgs.heroku
     pkgs.k9s
     pkgs.kind
