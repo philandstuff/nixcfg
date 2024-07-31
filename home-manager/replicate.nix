@@ -30,7 +30,6 @@
     pkgs.s3cmd
     pkgs.sops
     pkgs.stern
-    pkgs.tailscale
 
     cbcli.default
   ];
