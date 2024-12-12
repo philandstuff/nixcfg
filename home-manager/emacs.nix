@@ -1,9 +1,5 @@
 { config, pkgs, ...}:
 {
-  home.packages = [
-    pkgs.python3Packages.black
-  ];
-
   programs.emacs = {
     enable = true;
     package = pkgs.emacs29;
@@ -37,7 +33,6 @@
 
         envrc
 
-        blacken
         company
         dockerfile-mode
         emacsql
