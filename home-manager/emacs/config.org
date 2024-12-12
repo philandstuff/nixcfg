@@ -135,14 +135,6 @@ Company mode is a standard completion package that works well with lsp-mode.
 
 * Python
 
-** blacken
-
-#+BEGIN_SRC emacs-lisp
-  (require 'blacken)
-  (require 'python)
-  (add-hook 'python-mode-hook #'blacken-mode)
-#+END_SRC
-
 ** pyright support
 
 #+BEGIN_SRC emacs-lisp
@@ -152,7 +144,6 @@ Company mode is a standard completion package that works well with lsp-mode.
               (require 'lsp-pyright)
               (lsp-deferred)))
 #+END_SRC
-
 
 * Haskell
 
