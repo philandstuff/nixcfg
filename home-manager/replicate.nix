@@ -21,6 +21,7 @@
     pkgs.heroku
     pkgs.k9s
     pkgs.kind
+    pkgs.kubectl
     pkgs.kubernetes-helm
     pkgs.kustomize
     pkgs.oci-cli # ugh

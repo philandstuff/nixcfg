@@ -39,6 +39,8 @@
     pkgs.asdf-vm
     pkgs.pwgen
     pkgs.magic-wormhole
+    pkgs.wcurl
+    pkgs.imgcat
   ];
 
   programs = {

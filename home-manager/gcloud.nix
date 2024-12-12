@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }: {
   home =
     let gcloud = pkgs.google-cloud-sdk.withExtraComponents
-      (with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin kubectl pubsub-emulator ]);
+      (with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin pubsub-emulator ]);
     in {
       activation.gcloud = lib.hm.dag.entryAfter ["writeBoundary"] ''
         # disable telemetry
