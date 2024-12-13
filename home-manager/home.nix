@@ -30,17 +30,16 @@
   home.sessionVariables.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
   home.packages = [
-    # pkgs.csvkit
+    pkgs.asdf-vm
     pkgs.git-filter-repo
+    pkgs.imgcat
     pkgs.jq
+    pkgs.magic-wormhole
+    pkgs.pwgen
     pkgs.shellcheck
     pkgs.sqlite-interactive
     pkgs.watch
-    pkgs.asdf-vm
-    pkgs.pwgen
-    pkgs.magic-wormhole
     pkgs.wcurl
-    pkgs.imgcat
   ];
 
   programs = {
