@@ -31,10 +31,6 @@
     pkgs.sops
     pkgs.stern
 
-    pkgs.protobuf
-    pkgs.protoc-gen-go
-    pkgs.protoc-gen-go-grpc
-
     cbcli.default
   ];
 }
