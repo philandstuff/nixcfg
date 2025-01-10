@@ -24,13 +24,16 @@
     pkgs.kubectl
     pkgs.kubernetes-helm
     pkgs.kustomize
-    pkgs.oci-cli # ugh
     pkgs.postgresql
     pkgs.rclone
     pkgs.redis # for cli
     pkgs.s3cmd
     pkgs.sops
     pkgs.stern
+
+    pkgs.protobuf
+    pkgs.protoc-gen-go
+    pkgs.protoc-gen-go-grpc
 
     cbcli.default
   ];
