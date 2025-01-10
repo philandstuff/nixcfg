@@ -35,6 +35,7 @@
     pkgs.imgcat
     pkgs.jq
     pkgs.magic-wormhole
+    pkgs.pre-commit
     pkgs.pwgen
     pkgs.shellcheck
     pkgs.sqlite-interactive
