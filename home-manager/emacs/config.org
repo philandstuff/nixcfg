@@ -88,12 +88,13 @@ Tabs should be 4 chars, not 8:
     (setq x-super-keysym 'meta))
 #+end_src
 
-** disable C-z
+** disable annoying keybindings
 
-I hit this by mistake all the time and it's never what I want.
+I hit these by mistake all the time and they're never what I want.
 
 #+BEGIN_SRC emacs-lisp
   (global-unset-key (kbd "C-z"))
+  (global-unset-key (kbd "C-x C-c"))
 #+END_SRC
 
 ** enable commands
