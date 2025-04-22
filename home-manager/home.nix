@@ -29,19 +29,24 @@
 
   home.sessionVariables.NIX_CONFIG = "extra-experimental-features = nix-command flakes";
 
-  home.packages = [
-    pkgs.asdf-vm
-    pkgs.git-filter-repo
-    pkgs.imgcat
-    pkgs.jq
-    pkgs.magic-wormhole
-    pkgs.pre-commit
-    pkgs.pwgen
-    pkgs.shellcheck
-    pkgs.sqlite-interactive
-    pkgs.watch
-    pkgs.wcurl
-  ];
+  home.packages =
+    let magic_wormhole = pkgs.magic-wormhole.overridePythonAttrs (old: rec {
+          doCheck = false;
+        });
+    in
+      [
+        pkgs.asdf-vm
+        pkgs.git-filter-repo
+        pkgs.imgcat
+        pkgs.jq
+        magic_wormhole
+        pkgs.pre-commit
+        pkgs.pwgen
+        pkgs.shellcheck
+        pkgs.sqlite-interactive
+        pkgs.watch
+        pkgs.wcurl
+      ];
 
   programs = {
     direnv.enable = true;
