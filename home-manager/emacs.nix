@@ -2,7 +2,7 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs29.override {
+    package = pkgs.emacs30.override {
       withNativeCompilation = false;
     };
 
