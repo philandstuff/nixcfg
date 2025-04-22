@@ -8,7 +8,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = [
-    pkgs._1password
+    pkgs._1password-cli
     pkgs.awscli2
     pkgs.amazon-ecr-credential-helper
     pkgs.cmctl
