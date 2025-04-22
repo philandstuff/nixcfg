@@ -2,7 +2,9 @@
 {
   programs.emacs = {
     enable = true;
-    package = pkgs.emacs29;
+    package = pkgs.emacs29.override {
+      withNativeCompilation = false;
+    };
 
     extraConfig = pkgs.lib.mkIf pkgs.stdenv.hostPlatform.isDarwin ''
       ; macOS ls doesn't support --dired
