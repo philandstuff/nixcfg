@@ -10,11 +10,11 @@
         "nixpkgs-crunchy": "nixpkgs-crunchy"
       },
       "locked": {
-        "lastModified": 1722005544,
-        "narHash": "sha256-AiEgw+NkQ1CIPcz9K9OJOVHrQCRdVMxviSw5NsY21PU=",
+        "lastModified": 1744048978,
+        "narHash": "sha256-k2K4fhTSrtACjTCNeE14MB6Kvx6r3Li2jBBUu7minQo=",
         "owner": "CrunchyData",
         "repo": "bridge-cli",
-        "rev": "9e1c006d379af487db5cf767774b1d9b55293471",
+        "rev": "d074cb9ad43cdccc4fc58db81d3cf95f3156934e",
         "type": "github"
       },
       "original": {
@@ -66,11 +66,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1725180166,
-        "narHash": "sha256-fzssXuGR/mCeGbzM1ExaTqDz7QDGta3WA4jJsZyRruo=",
+        "lastModified": 1745272532,
+        "narHash": "sha256-+sFbKw1vFkulKYxsAbz84N0V/goSg808IgFh8iWe/As=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "471e3eb0a114265bcd62d11d58ba8d3421ee68eb",
+        "rev": "81541ea36d1fead4be7797e826ee325d4c19308b",
         "type": "github"
       },
       "original": {
@@ -112,11 +112,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1725103162,
-        "narHash": "sha256-Ym04C5+qovuQDYL/rKWSR+WESseQBbNAe5DsXNx5trY=",
+        "lastModified": 1744932701,
+        "narHash": "sha256-fusHbZCyv126cyArUwwKrLdCkgVAIaa/fQJYFlCEqiU=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "12228ff1752d7b7624a54e9c1af4b222b3c1073b",
+        "rev": "b024ced1aac25639f8ca8fdfc2f8c4fbd66c48ef",
         "type": "github"
       },
       "original": {
