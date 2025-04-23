@@ -85,7 +85,7 @@
 
     zsh = {
       enable = true;
-      initExtra = ''
+      initContent = ''
         export PATH=$PATH:$HOME/go/bin
         . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
         if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
