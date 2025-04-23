@@ -1,5 +1,20 @@
-{ config, pkgs, cbcli, ... }:
+{ config, pkgs, ... }:
 
+let cbcli = pkgs.stdenv.mkDerivation {
+      name = "cbcli-v3.6.4";
+      src = pkgs.fetchurl {
+        url = "https://github.com/CrunchyData/bridge-cli/releases/download/v3.6.4/cb-v3.6.4_macos_arm64.zip";
+        sha256 = "14h9lf1sf4abybrcs3x339nivk978zr0pd4rlql15kpv0dkix010";
+      };
+      phases = ["installPhase" "patchPhase"];
+      nativeBuildInputs = [ pkgs.unzip ];
+      installPhase = ''
+        mkdir -p $out/bin
+        cd $out/bin
+        unzip $src
+      '';
+    };
+in
 {
   imports = [
     ./gcloud.nix
@@ -31,6 +46,6 @@
     pkgs.sops
     pkgs.stern
 
-    cbcli.default
+    cbcli
   ];
 }
