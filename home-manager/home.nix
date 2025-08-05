@@ -3,8 +3,8 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "philandstuff";
-  home.homeDirectory = "/Users/philandstuff";
+  home.username = "philip.potter";
+  home.homeDirectory = "/Users/philip.potter";
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
@@ -22,7 +22,7 @@
   imports = [
     ./emacs.nix
     ./yubikey-agent.nix
-    ./replicate.nix
+    ./poolside.nix
   ];
 
   launchd.enable = true;
