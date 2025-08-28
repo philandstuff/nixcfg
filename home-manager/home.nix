@@ -35,11 +35,11 @@
         });
     in
       [
-        pkgs.asdf-vm
         pkgs.git-filter-repo
         pkgs.imgcat
         pkgs.jq
         magic_wormhole
+        pkgs.mise
         pkgs.pre-commit
         pkgs.pwgen
         pkgs.shellcheck
@@ -87,7 +87,7 @@
       enable = true;
       initContent = ''
         export PATH=$PATH:$HOME/go/bin
-        . ${pkgs.asdf-vm}/share/asdf-vm/asdf.sh
+        eval "$(${pkgs.mise}/bin/mise activate zsh)"
         if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
           . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
         fi
