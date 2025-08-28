@@ -44,6 +44,7 @@
         pkgs.pwgen
         pkgs.shellcheck
         pkgs.sqlite-interactive
+        pkgs.uv
         pkgs.watch
         pkgs.wcurl
       ];
